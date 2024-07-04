@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/ubuntu/django-helloworld/
+file_exists_behavior: OVERWRITE
+permissions:
+  - object: /home/ubuntu/django-helloworld/
+    owner: ubuntu
+    group: ubuntu
+hooks:
+  ApplicationStop:
+    - location: scripts/stop-services.sh
+  AfterInstall:
+    - location: scripts/AfterInstallHook-services.sh
+  ApplicationStart:
+    - location: scripts/start-services.sh
